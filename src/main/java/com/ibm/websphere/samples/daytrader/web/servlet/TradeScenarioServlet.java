@@ -17,17 +17,18 @@ package com.ibm.websphere.samples.daytrader.web.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serial;
 import java.util.Collection;
 import java.util.Iterator;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import com.ibm.websphere.samples.daytrader.entities.HoldingDataBean;
 import com.ibm.websphere.samples.daytrader.util.Log;
@@ -44,7 +45,8 @@ import com.ibm.websphere.samples.daytrader.util.TradeConfig;
 @WebServlet(name = "TradeScenarioServlet", urlPatterns = { "/scenario" })
 public class TradeScenarioServlet extends HttpServlet {
 
-    private static final long serialVersionUID = 1410005249314201829L;
+  @Serial
+  private static final long serialVersionUID = 1410005249314201829L;
 
     /**
      * Servlet initialization method.
@@ -79,7 +81,7 @@ public class TradeScenarioServlet extends HttpServlet {
      *            Object that encapsulates the response from the servlet
      */
     @Override
-    public void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(jakarta.servlet.http.HttpServletRequest request, jakarta.servlet.http.HttpServletResponse response) throws ServletException, IOException {
         performTask(request, response);
     }
 
@@ -92,7 +94,7 @@ public class TradeScenarioServlet extends HttpServlet {
      *            Object that encapsulates the response from the servlet
      */
     @Override
-    public void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(jakarta.servlet.http.HttpServletRequest request, jakarta.servlet.http.HttpServletResponse response) throws ServletException, IOException {
         performTask(request, response);
     }
 
@@ -200,7 +202,7 @@ public class TradeScenarioServlet extends HttpServlet {
 
             // login is successful if the userID is written to the HTTP session
             if (session.getAttribute("uidBean") == null) {
-                System.out.println("TradeScenario login failed. Reset DB between runs");
+              IO.println("TradeScenario login failed. Reset DB between runs");
             }
             break;
         case 'o': // logout

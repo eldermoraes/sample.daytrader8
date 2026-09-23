@@ -15,7 +15,7 @@
  */
 package com.ibm.websphere.samples.daytrader.web.prims.jaxrs;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
 /**
  * with @XmlRootElement, make the XMLObject as a JAXB object

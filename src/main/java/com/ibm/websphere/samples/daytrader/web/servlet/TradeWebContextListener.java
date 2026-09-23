@@ -15,15 +15,15 @@
  */
 package com.ibm.websphere.samples.daytrader.web.servlet;
 
-import static javax.faces.annotation.FacesConfig.Version.JSF_2_3;
+import static jakarta.faces.annotation.FacesConfig.Version.JSF_2_3;
 
 import java.io.InputStream;
 import java.util.Properties;
 
-import javax.faces.annotation.FacesConfig;
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-import javax.servlet.annotation.WebListener;
+import jakarta.faces.annotation.FacesConfig;
+import jakarta.servlet.ServletContextEvent;
+import jakarta.servlet.ServletContextListener;
+import jakarta.servlet.annotation.WebListener;
 
 import com.ibm.websphere.samples.daytrader.util.Log;
 import com.ibm.websphere.samples.daytrader.util.TradeConfig;
@@ -46,35 +46,35 @@ public class TradeWebContextListener implements ServletContextListener {
         
       try {
         prop.load(stream);
-        System.out.println("Settings from daytrader.properties: " + prop);
+        IO.println("Settings from daytrader.properties: " + prop);
         
         if (System.getenv("RUNTIME_MODE") != null) {
           TradeConfig.setRunTimeMode(Integer.parseInt(System.getenv("RUNTIME_MODE")));
         } else {
           TradeConfig.setRunTimeMode(Integer.parseInt(prop.getProperty("runtimeMode")));
         }
-        System.out.print("Running in " + TradeConfig.getRunTimeModeNames()[TradeConfig.getRunTimeMode()] + " Mode");
+        IO.print("Running in " + TradeConfig.getRunTimeModeNames()[TradeConfig.getRunTimeMode()] + " Mode");
             
         if (System.getenv("ORDER_PROCESSING_MODE") != null) {
           TradeConfig.setOrderProcessingMode(Integer.parseInt(System.getenv("ORDER_PROCESSING_MODE")));
         } else {
           TradeConfig.setOrderProcessingMode(Integer.parseInt(prop.getProperty("orderProcessingMode")));
         }
-        System.out.print("Running in " + TradeConfig.getOrderProcessingModeNames()[TradeConfig.getOrderProcessingMode()] + " Order Processing Mode");  
+        IO.print("Running in " + TradeConfig.getOrderProcessingModeNames()[TradeConfig.getOrderProcessingMode()] + " Order Processing Mode");  
         
         if (System.getenv("MAX_USERS") != null) {
           TradeConfig.setMAX_USERS(Integer.parseInt(System.getenv("MAX_USERS")));
         } else {
           TradeConfig.setMAX_USERS(Integer.parseInt(prop.getProperty("maxUsers")));
         }
-        System.out.print("MAX_USERS = " +  TradeConfig.getMAX_USERS() + " users");
+        IO.print("MAX_USERS = " + TradeConfig.getMAX_USERS() + " users");
         
         if (System.getenv("MAX_QUOTES") != null) {
           TradeConfig.setMAX_QUOTES(Integer.parseInt(System.getenv("MAX_QUOTES")));
         } else {
           TradeConfig.setMAX_QUOTES(Integer.parseInt(prop.getProperty("maxQuotes")));
         }
-        System.out.print("MAX_QUOTES = " +  TradeConfig.getMAX_QUOTES() + " quotes");
+        IO.print("MAX_QUOTES = " + TradeConfig.getMAX_QUOTES() + " quotes");
        
         if (System.getenv("PUBLISH_QUOTES") != null) {
           TradeConfig.setPublishQuotePriceChange(Boolean.parseBoolean(System.getenv("PUBLISH_QUOTES")));
@@ -103,7 +103,7 @@ public class TradeWebContextListener implements ServletContextListener {
         TradeConfig.setLongRun(Boolean.parseBoolean(prop.getProperty("longRun")));
        
       } catch (Exception e) {
-        System.out.println("daytrader.properties not found");
+        IO.println("daytrader.properties not found");
       }
        
     }

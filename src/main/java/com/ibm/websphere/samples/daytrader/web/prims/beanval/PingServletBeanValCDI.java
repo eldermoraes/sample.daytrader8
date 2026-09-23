@@ -16,16 +16,17 @@
 package com.ibm.websphere.samples.daytrader.web.prims.beanval;
 
 import java.io.IOException;
+import java.io.Serial;
 import java.time.LocalDateTime;
 
-import javax.inject.Inject;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.inject.Inject;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import com.ibm.websphere.samples.daytrader.util.Log;
 
@@ -33,7 +34,8 @@ import com.ibm.websphere.samples.daytrader.util.Log;
 public class PingServletBeanValCDI  extends HttpServlet {
 
   @Inject CDIMethodConstraintBean hitCountBean;
-  
+
+  @Serial
   private static final long serialVersionUID = 7097023236709683760L;
   private static LocalDateTime initTime;
 

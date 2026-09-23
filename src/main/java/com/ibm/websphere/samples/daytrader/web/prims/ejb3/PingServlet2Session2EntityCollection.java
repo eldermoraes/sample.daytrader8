@@ -16,17 +16,18 @@
 package com.ibm.websphere.samples.daytrader.web.prims.ejb3;
 
 import java.io.IOException;
+import java.io.Serial;
 import java.util.Collection;
 import java.util.Iterator;
 
-import javax.ejb.EJB;
-import javax.inject.Inject;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.ejb.EJB;
+import jakarta.inject.Inject;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import com.ibm.websphere.samples.daytrader.entities.HoldingDataBean;
 import com.ibm.websphere.samples.daytrader.impl.ejb3.TradeSLSBBean;
@@ -48,7 +49,8 @@ import com.ibm.websphere.samples.daytrader.util.TradeConfig;
 @WebServlet(name = "ejb3.PingServlet2Session2EntityCollection", urlPatterns = { "/ejb3/PingServlet2Session2EntityCollection" })
 public class PingServlet2Session2EntityCollection extends HttpServlet {
 
-    private static final long serialVersionUID = 6171380014749902308L;
+  @Serial
+  private static final long serialVersionUID = 6171380014749902308L;
 
     private static String initTime;
 

@@ -15,10 +15,10 @@
  */
 package com.ibm.websphere.samples.daytrader.impl.direct;
 
-import javax.annotation.Resource;
-import javax.enterprise.context.Dependent;
-import javax.inject.Inject;
-import javax.transaction.UserTransaction;
+import jakarta.annotation.Resource;
+import jakarta.enterprise.context.Dependent;
+import jakarta.inject.Inject;
+import jakarta.transaction.UserTransaction;
 
 import com.ibm.websphere.samples.daytrader.interfaces.TradeJDBC;
 import com.ibm.websphere.samples.daytrader.interfaces.TradeServices;

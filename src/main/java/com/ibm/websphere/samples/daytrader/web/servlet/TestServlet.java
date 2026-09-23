@@ -16,17 +16,18 @@
 package com.ibm.websphere.samples.daytrader.web.servlet;
 
 import java.io.IOException;
+import java.io.Serial;
 import java.math.BigDecimal;
 
-import javax.enterprise.inject.Any;
-import javax.enterprise.inject.Instance;
-import javax.inject.Inject;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.enterprise.inject.Any;
+import jakarta.enterprise.inject.Instance;
+import jakarta.inject.Inject;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import com.ibm.websphere.samples.daytrader.interfaces.TradeServices;
 import com.ibm.websphere.samples.daytrader.util.Log;
@@ -36,7 +37,8 @@ import com.ibm.websphere.samples.daytrader.util.TradeRunTimeModeLiteral;
 @WebServlet(name = "TestServlet", urlPatterns = { "/TestServlet" })
 public class TestServlet extends HttpServlet {
 
-    private static final long serialVersionUID = -2927579146688173127L;
+  @Serial
+  private static final long serialVersionUID = -2927579146688173127L;
     
     private TradeServices tradeAction;
     

@@ -16,14 +16,15 @@
 package com.ibm.websphere.samples.daytrader.web.servlet;
 
 import java.io.IOException;
+import java.io.Serial;
 
-import javax.inject.Inject;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.inject.Inject;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 
 import com.ibm.websphere.samples.daytrader.beans.RunStatsDataBean;
@@ -46,6 +47,7 @@ public class TradeConfigServlet extends HttpServlet {
   @Inject
   private TradeDirectDBUtils dbUtils;
 
+  @Serial
   private static final long serialVersionUID = -1910381529792500095L;
 
   /**
@@ -214,7 +216,7 @@ public class TradeConfigServlet extends HttpServlet {
       TradeConfig.setDisplayOrderAlerts(false);
     currentConfigStr += "\t\tDisplay Order Alerts:\t\t" + TradeConfig.getDisplayOrderAlerts() + "\n";
 
-    System.out.println(currentConfigStr);
+    IO.println(currentConfigStr);
   }
 
   @Override

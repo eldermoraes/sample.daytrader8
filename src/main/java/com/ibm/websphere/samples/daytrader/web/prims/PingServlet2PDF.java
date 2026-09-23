@@ -18,15 +18,17 @@ package com.ibm.websphere.samples.daytrader.web.prims;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
+import java.io.Serial;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 
-import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import com.ibm.websphere.samples.daytrader.util.Log;
 
@@ -38,7 +40,8 @@ import com.ibm.websphere.samples.daytrader.util.Log;
 @WebServlet(name = "PingServlet2PDF", urlPatterns = { "/servlet/PingServlet2PDF" })
 public class PingServlet2PDF extends HttpServlet {
 
-    private static final long serialVersionUID = -1321793174442755868L;
+  @Serial
+  private static final long serialVersionUID = -1321793174442755868L;
     private static int hitCount = 0;
     private static final int BUFFER_SIZE = 1024 * 8; // 8 KB
 
@@ -83,7 +86,7 @@ public class PingServlet2PDF extends HttpServlet {
 
             // Open an InputStream to the PDF document
             String fileURL = "http://localhost:9080/daytrader/WAS_V7_64-bit_performance.pdf";
-            URL url = new URL(fileURL);
+            URL url = URI.create(fileURL).toURL();
             URLConnection conn = url.openConnection();
             bis = new BufferedInputStream(conn.getInputStream());
 

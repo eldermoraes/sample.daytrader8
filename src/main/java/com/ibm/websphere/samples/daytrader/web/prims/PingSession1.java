@@ -17,14 +17,15 @@ package com.ibm.websphere.samples.daytrader.web.prims;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serial;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import com.ibm.websphere.samples.daytrader.util.Log;
 
@@ -37,7 +38,8 @@ import com.ibm.websphere.samples.daytrader.util.Log;
  */
 @WebServlet(name = "PingSession1", urlPatterns = { "/servlet/PingSession1" })
 public class PingSession1 extends HttpServlet {
-    private static final long serialVersionUID = -3703858656588519807L;
+  @Serial
+  private static final long serialVersionUID = -3703858656588519807L;
     private static int count;
     // For each new session created, add a session ID of the form "sessionID:" +
     // count
@@ -85,7 +87,7 @@ public class PingSession1 extends HttpServlet {
             Integer ival = (Integer) session.getAttribute("sessiontest.counter");
             // if their is not a counter create one.
             if (ival == null) {
-                ival = new Integer(count++);
+                ival = Integer.valueOf(count++);
                 session.setAttribute("sessiontest.counter", ival);
             }
             String SessionID = "SessionID:" + ival.toString();

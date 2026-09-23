@@ -15,10 +15,12 @@
  */
 package com.ibm.websphere.samples.daytrader.beans;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public class RunStatsDataBean implements Serializable {
-    private static final long serialVersionUID = 4017778674103242167L;
+  @Serial
+  private static final long serialVersionUID = 4017778674103242167L;
 
     // Constructors
     public RunStatsDataBean() {

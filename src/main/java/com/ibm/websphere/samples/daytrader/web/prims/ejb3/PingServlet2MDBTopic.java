@@ -16,19 +16,20 @@
 package com.ibm.websphere.samples.daytrader.web.prims.ejb3;
 
 import java.io.IOException;
+import java.io.Serial;
 
-import javax.annotation.Resource;
-import javax.jms.Connection;
-import javax.jms.ConnectionFactory;
-import javax.jms.JMSContext;
-import javax.jms.TextMessage;
-import javax.jms.Topic;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.annotation.Resource;
+import jakarta.jms.Connection;
+import jakarta.jms.ConnectionFactory;
+import jakarta.jms.JMSContext;
+import jakarta.jms.TextMessage;
+import jakarta.jms.Topic;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import com.ibm.websphere.samples.daytrader.util.Log;
 import com.ibm.websphere.samples.daytrader.util.TradeConfig;
@@ -45,13 +46,14 @@ import com.ibm.websphere.samples.daytrader.util.TradeConfig;
 @WebServlet(name = "ejb3.PingServlet2MDBTopic", urlPatterns = { "/ejb3/PingServlet2MDBTopic" })
 public class PingServlet2MDBTopic extends HttpServlet {
 
-    private static final long serialVersionUID = 5925470158886928225L;
+  @Serial
+  private static final long serialVersionUID = 5925470158886928225L;
 
     private static String initTime;
 
     private static int hitCount;
 
-    @Resource(name = "jms/TopicConnectionFactory", authenticationType = javax.annotation.Resource.AuthenticationType.APPLICATION)
+    @Resource(name = "jms/TopicConnectionFactory", authenticationType = jakarta.annotation.Resource.AuthenticationType.APPLICATION)
     private ConnectionFactory topicConnectionFactory;
 
     // TODO: Glassfish does not like this - change to lookup?

@@ -15,15 +15,16 @@
  */
 package com.ibm.websphere.samples.daytrader.util;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.text.MessageFormat;
 import java.util.Arrays;
 
-import javax.annotation.Priority;
+import jakarta.annotation.Priority;
 
-import javax.interceptor.AroundInvoke;
-import javax.interceptor.Interceptor;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.Interceptor;
+import jakarta.interceptor.InvocationContext;
 
 import com.ibm.websphere.samples.daytrader.interfaces.Trace;
 
@@ -33,6 +34,7 @@ import com.ibm.websphere.samples.daytrader.interfaces.Trace;
 @Priority(Interceptor.Priority.APPLICATION)
 public class TraceInterceptor implements Serializable {
 
+  @Serial
   private static final long serialVersionUID = -4195975993998268072L;
   private static final MessageFormat form = new MessageFormat("Method enter -- {0} called with {1}");
 

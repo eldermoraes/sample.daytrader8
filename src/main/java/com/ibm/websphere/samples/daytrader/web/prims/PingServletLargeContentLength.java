@@ -16,13 +16,14 @@
 package com.ibm.websphere.samples.daytrader.web.prims;
 
 import java.io.IOException;
+import java.io.Serial;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -35,11 +36,11 @@ import javax.servlet.http.HttpServletResponse;
 public class PingServletLargeContentLength extends HttpServlet {
 
 
-
-    /**
-     * 
-     */
-    private static final long serialVersionUID = -7979576220528252408L;
+  /**
+   * 
+   */
+  @Serial
+  private static final long serialVersionUID = -7979576220528252408L;
 
     /**
      * forwards post requests to the doGet method Creation date: (02/07/2013
@@ -52,7 +53,7 @@ public class PingServletLargeContentLength extends HttpServlet {
      */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        System.out.println("Length: " + req.getContentLengthLong());
+      IO.println("Length: " + req.getContentLengthLong());
         
         
         

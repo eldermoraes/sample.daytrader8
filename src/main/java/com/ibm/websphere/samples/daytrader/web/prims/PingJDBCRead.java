@@ -16,14 +16,15 @@
 package com.ibm.websphere.samples.daytrader.web.prims;
 
 import java.io.IOException;
+import java.io.Serial;
 
-import javax.inject.Inject;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.inject.Inject;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import com.ibm.websphere.samples.daytrader.entities.QuoteDataBean;
 import com.ibm.websphere.samples.daytrader.interfaces.TradeJDBC;
@@ -48,8 +49,9 @@ public class PingJDBCRead extends HttpServlet {
   @Inject
   @TradeJDBC
   TradeServices trade;
-  
-    private static final long serialVersionUID = -8810390150632488526L;
+
+  @Serial
+  private static final long serialVersionUID = -8810390150632488526L;
     private static String initTime;
     private static int hitCount;
 

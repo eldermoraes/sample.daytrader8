@@ -16,21 +16,23 @@
 package com.ibm.websphere.samples.daytrader.web.prims.beanval;
 
 import java.io.IOException;
+import java.io.Serial;
 import java.time.LocalDateTime;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import com.ibm.websphere.samples.daytrader.util.Log;
 
 @WebServlet(name = "PingServletBeanValSimple1", urlPatterns = { "/servlet/PingServletBeanValSimple1" })
 public class PingServletBeanValSimple1  extends HttpServlet {
 
+  @Serial
   private static final long serialVersionUID = 7097023236709683760L;
   private static LocalDateTime initTime;
   private static int hitCount = 0;

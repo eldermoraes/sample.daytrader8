@@ -15,6 +15,7 @@
  */
 package com.ibm.websphere.samples.daytrader.beans;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -22,9 +23,9 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonObjectBuilder;
 
 import com.ibm.websphere.samples.daytrader.entities.QuoteDataBean;
 import com.ibm.websphere.samples.daytrader.util.FinancialUtils;
@@ -33,7 +34,8 @@ import com.ibm.websphere.samples.daytrader.util.TradeConfig;
 
 public class MarketSummaryDataBean implements Serializable {
 
-    private static final long serialVersionUID = 650652242288745600L;
+  @Serial
+  private static final long serialVersionUID = 650652242288745600L;
     private BigDecimal TSIA; /* Trade Stock Index Average */
     private BigDecimal openTSIA; /* Trade Stock Index Average at the open */
     private double volume; /* volume of shares traded */

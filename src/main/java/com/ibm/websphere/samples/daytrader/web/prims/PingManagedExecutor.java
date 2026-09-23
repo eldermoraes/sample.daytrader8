@@ -16,22 +16,24 @@
 package com.ibm.websphere.samples.daytrader.web.prims;
 
 import java.io.IOException;
+import java.io.Serial;
 
-import javax.annotation.Resource;
-import javax.enterprise.concurrent.ManagedExecutorService;
-import javax.servlet.AsyncContext;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.annotation.Resource;
+import jakarta.enterprise.concurrent.ManagedExecutorService;
+import jakarta.servlet.AsyncContext;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet(asyncSupported=true,name = "PingManagedExecutor", urlPatterns = { "/servlet/PingManagedExecutor" })
 public class PingManagedExecutor extends HttpServlet{
 
-	private static final long serialVersionUID = -4695386150928451234L;
+  @Serial
+  private static final long serialVersionUID = -4695386150928451234L;
 	private static String initTime;
     private static int hitCount;
 

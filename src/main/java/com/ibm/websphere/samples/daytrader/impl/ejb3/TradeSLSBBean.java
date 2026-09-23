@@ -16,37 +16,39 @@
 package com.ibm.websphere.samples.daytrader.impl.ejb3;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.Future;
+import java.util.concurrent.ThreadLocalRandom;
 
-import javax.annotation.Resource;
-import javax.ejb.EJB;
-import javax.ejb.EJBException;
-import javax.ejb.SessionContext;
-import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
-import javax.inject.Inject;
-import javax.jms.JMSContext;
-import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
-import javax.jms.TextMessage;
-import javax.jms.Topic;
-import javax.jms.TopicConnectionFactory;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-import javax.transaction.RollbackException;
-import javax.validation.constraints.NotNull;
+import jakarta.annotation.Resource;
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateless;
+import jakarta.ejb.TransactionAttribute;
+import jakarta.ejb.TransactionAttributeType;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
+import jakarta.inject.Inject;
+import jakarta.jms.JMSContext;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.TextMessage;
+import jakarta.jms.Topic;
+import jakarta.jms.TopicConnectionFactory;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
+import jakarta.transaction.RollbackException;
+import jakarta.validation.constraints.NotNull;
 
 import com.ibm.websphere.samples.daytrader.interfaces.RuntimeMode;
 import com.ibm.websphere.samples.daytrader.interfaces.Trace;
@@ -72,11 +74,11 @@ import com.ibm.websphere.samples.daytrader.util.TradeConfig;
 public class TradeSLSBBean implements TradeServices {
 
     // For Wildfly - add java:/ to these resource names.
-    @Resource(name = "jms/QueueConnectionFactory", authenticationType = javax.annotation.Resource.AuthenticationType.APPLICATION)
+    @Resource(name = "jms/QueueConnectionFactory", authenticationType = jakarta.annotation.Resource.AuthenticationType.APPLICATION)
     //@Resource(name = "java:/jms/QueueConnectionFactory", authenticationType = javax.annotation.Resource.AuthenticationType.APPLICATION)
     private QueueConnectionFactory queueConnectionFactory;
 
-    @Resource(name = "jms/TopicConnectionFactory", authenticationType = javax.annotation.Resource.AuthenticationType.APPLICATION)
+    @Resource(name = "jms/TopicConnectionFactory", authenticationType = jakarta.annotation.Resource.AuthenticationType.APPLICATION)
     //@Resource(name = "java:/jms/TopicConnectionFactory", authenticationType = javax.annotation.Resource.AuthenticationType.APPLICATION)
     private TopicConnectionFactory topicConnectionFactory;
 
@@ -207,7 +209,7 @@ public class TradeSLSBBean implements TradeServices {
     public void queueOrder(Integer orderID, boolean twoPhase) {
 
         // 2 phase
-        try (JMSContext queueContext = queueConnectionFactory.createContext();) {
+        try (JMSContext queueContext = queueConnectionFactory.createContext()) {
           TextMessage message = queueContext.createTextMessage();
 
           message.setStringProperty("command", "neworder");
@@ -228,7 +230,7 @@ public class TradeSLSBBean implements TradeServices {
         OrderDataBean order = entityManager.find(OrderDataBean.class, orderID);
 
         if (order == null) {
-          System.out.println("error");
+          IO.println("error");
             throw new EJBException("Error: attempt to complete Order that is null\n" + order);
         }
 
@@ -393,7 +395,7 @@ public class TradeSLSBBean implements TradeServices {
             changeFactor = TradeConfig.MAXIMUM_STOCK_SPLIT_MULTIPLIER;
         }
 
-        BigDecimal newPrice = changeFactor.multiply(oldPrice).setScale(2, BigDecimal.ROUND_HALF_UP);
+        BigDecimal newPrice = changeFactor.multiply(oldPrice).setScale(2, RoundingMode.HALF_UP);
 
         quote.setPrice(newPrice);
         quote.setChange(newPrice.subtract(openPrice).doubleValue());
@@ -514,7 +516,7 @@ public class TradeSLSBBean implements TradeServices {
             return;
         }
 
-        try (JMSContext topicContext = topicConnectionFactory.createContext();) {
+        try (JMSContext topicContext = topicConnectionFactory.createContext()) {
             TextMessage message = topicContext.createTextMessage();
 
             message.setStringProperty("command", "updateQuote");
@@ -568,16 +570,16 @@ public class TradeSLSBBean implements TradeServices {
     public QuoteDataBean pingTwoPhase(String symbol) throws Exception {
         QuoteDataBean quoteData = null;
 
-        try (JMSContext queueContext = queueConnectionFactory.createContext();) {
+        try (JMSContext queueContext = queueConnectionFactory.createContext()) {
             // Get a Quote and send a JMS message in a 2-phase commit
             quoteData = entityManager.find(QuoteDataBean.class, symbol);
             
-            double sharesTraded = (Math.random() * 100) + 1 ;
+            double sharesTraded = (ThreadLocalRandom.current().nextDouble() * 100) + 1 ;
             BigDecimal oldPrice = quoteData.getPrice();
             BigDecimal openPrice = quoteData.getOpen();
-            BigDecimal changeFactor = new BigDecimal (Math.random() * 100);
+            BigDecimal changeFactor = new BigDecimal (ThreadLocalRandom.current().nextDouble() * 100);
 
-            BigDecimal newPrice = changeFactor.multiply(oldPrice).setScale(2, BigDecimal.ROUND_HALF_UP);
+            BigDecimal newPrice = changeFactor.multiply(oldPrice).setScale(2, RoundingMode.HALF_UP);
 
             quoteData.setPrice(newPrice);
             quoteData.setChange(newPrice.subtract(openPrice).doubleValue());
@@ -602,7 +604,7 @@ public class TradeSLSBBean implements TradeServices {
         public int compare(QuoteDataBean quote1, QuoteDataBean quote2) {
             double change1 = quote1.getChange();
             double change2 = quote2.getChange();
-            return new Double(change2).compareTo(change1);
+            return Double.valueOf(change2).compareTo(change1);
         }
     }
 

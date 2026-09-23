@@ -15,12 +15,13 @@
  */
 package com.ibm.websphere.samples.daytrader.web.prims.cdi;
 
+import java.io.Serial;
 import java.io.Serializable;
 
-import javax.annotation.Priority;
-import javax.interceptor.AroundInvoke;
-import javax.interceptor.Interceptor;
-import javax.interceptor.InvocationContext;
+import jakarta.annotation.Priority;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.Interceptor;
+import jakarta.interceptor.InvocationContext;
 
 /**
  *
@@ -31,6 +32,7 @@ import javax.interceptor.InvocationContext;
 public class PingInterceptor implements Serializable {
 
   /**  */
+  @Serial
   private static final long serialVersionUID = 1L;
 
   @AroundInvoke

@@ -15,6 +15,8 @@
  */
 package com.ibm.websphere.samples.daytrader.util;
 
+import java.io.Serial;
+
 /**
  *
  * To change this generated comment edit the template variable "typecomment":
@@ -23,7 +25,8 @@ package com.ibm.websphere.samples.daytrader.util;
  */
 public class MDBStats extends java.util.HashMap<String, TimerStat> {
 
-    private static final long serialVersionUID = -3759835921094193760L;
+  @Serial
+  private static final long serialVersionUID = -3759835921094193760L;
     // Singleton class
     private static MDBStats mdbStats = null;
 

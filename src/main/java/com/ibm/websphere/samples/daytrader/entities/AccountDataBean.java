@@ -15,30 +15,31 @@
  */
 package com.ibm.websphere.samples.daytrader.entities;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Date;
 
-import javax.ejb.EJBException;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.TableGenerator;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Transient;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PastOrPresent;
-import javax.validation.constraints.PositiveOrZero;
+import jakarta.ejb.EJBException;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.TableGenerator;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.persistence.Transient;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.PositiveOrZero;
 
 import com.ibm.websphere.samples.daytrader.util.Log;
 import com.ibm.websphere.samples.daytrader.util.TradeConfig;
@@ -47,7 +48,8 @@ import com.ibm.websphere.samples.daytrader.util.TradeConfig;
 @Table(name = "accountejb")
 public class AccountDataBean implements Serializable {
 
-    private static final long serialVersionUID = 8437841265136840545L;
+  @Serial
+  private static final long serialVersionUID = 8437841265136840545L;
 
     /* Accessor methods for persistent fields */
     @TableGenerator(name = "accountIdGen", table = "KEYGENEJB", pkColumnName = "KEYNAME", valueColumnName = "KEYVAL", pkColumnValue = "account", allocationSize = 1000)
@@ -125,7 +127,7 @@ public class AccountDataBean implements Serializable {
     }
 
     public static AccountDataBean getRandomInstance() {
-        return new AccountDataBean(new Integer(TradeConfig.rndInt(100000)), // accountID
+        return new AccountDataBean(Integer.valueOf(TradeConfig.rndInt(100000)), // accountID
                 TradeConfig.rndInt(10000), // loginCount
                 TradeConfig.rndInt(10000), // logoutCount
                 new java.util.Date(), // lastLogin

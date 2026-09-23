@@ -16,6 +16,7 @@
 package com.ibm.websphere.samples.daytrader.util;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -102,9 +103,9 @@ public class TradeConfig {
   public static BigDecimal PENNY_STOCK_RECOVERY_MIRACLE_MULTIPLIER;
   static {
     PENNY_STOCK_PRICE = new BigDecimal(0.01);
-    PENNY_STOCK_PRICE = PENNY_STOCK_PRICE.setScale(2, BigDecimal.ROUND_HALF_UP);
+    PENNY_STOCK_PRICE = PENNY_STOCK_PRICE.setScale(2, RoundingMode.HALF_UP);
     PENNY_STOCK_RECOVERY_MIRACLE_MULTIPLIER = new BigDecimal(600.0);
-    PENNY_STOCK_RECOVERY_MIRACLE_MULTIPLIER.setScale(2, BigDecimal.ROUND_HALF_UP);
+    PENNY_STOCK_RECOVERY_MIRACLE_MULTIPLIER.setScale(2, RoundingMode.HALF_UP);
   }
 
   /*
@@ -118,9 +119,9 @@ public class TradeConfig {
   public static BigDecimal MAXIMUM_STOCK_SPLIT_MULTIPLIER;
   static {
     MAXIMUM_STOCK_PRICE = new BigDecimal(400);
-    MAXIMUM_STOCK_PRICE.setScale(2, BigDecimal.ROUND_HALF_UP);
+    MAXIMUM_STOCK_PRICE.setScale(2, RoundingMode.HALF_UP);
     MAXIMUM_STOCK_SPLIT_MULTIPLIER = new BigDecimal(0.5);
-    MAXIMUM_STOCK_SPLIT_MULTIPLIER.setScale(2, BigDecimal.ROUND_HALF_UP);
+    MAXIMUM_STOCK_SPLIT_MULTIPLIER.setScale(2, RoundingMode.HALF_UP);
   }
 
   /*
@@ -324,15 +325,15 @@ public class TradeConfig {
   }
 
   public static int rndInt(int i) {
-    return (new Float(random() * i)).intValue();
+    return (Float.valueOf((float) random() * i)).intValue();
   }
 
   public static float rndFloat(int i) {
-    return (new Float(random() * i)).floatValue();
+    return (Float.valueOf((float) random() * i)).floatValue();
   }
 
   public static BigDecimal rndBigDecimal(float f) {
-    return (new BigDecimal(random() * f)).setScale(2, BigDecimal.ROUND_HALF_UP);
+    return (new BigDecimal(random() * f)).setScale(2, RoundingMode.HALF_UP);
   }
 
   public static boolean rndBoolean() {
@@ -348,7 +349,7 @@ public class TradeConfig {
   }
 
   public static float rndPrice() {
-    return ((new Integer(rndInt(200))).floatValue()) + 1.0f;
+    return ((Integer.valueOf(rndInt(200))).floatValue()) + 1.0f;
   }
 
   private static final BigDecimal ONE = new BigDecimal(1.0);
@@ -362,7 +363,7 @@ public class TradeConfig {
     percentGain += 1;
 
     // change factor is between +/- 20%
-    BigDecimal percentGainBD = (new BigDecimal(percentGain)).setScale(2, BigDecimal.ROUND_HALF_UP);
+    BigDecimal percentGainBD = (new BigDecimal(percentGain)).setScale(2, RoundingMode.HALF_UP);
     if (percentGainBD.doubleValue() <= 0.0) {
       percentGainBD = ONE;
     }
@@ -371,7 +372,7 @@ public class TradeConfig {
   }
 
   public static float rndQuantity() {
-    return ((new Integer(rndInt(200))).floatValue()) + 1.0f;
+    return ((Integer.valueOf(rndInt(200))).floatValue()) + 1.0f;
   }
 
   public static String rndSymbol() {
@@ -406,7 +407,7 @@ public class TradeConfig {
     if (deck == null) {
       deck = new ArrayList<Integer>(numUsers);
       for (int i = 0; i < numUsers; i++) {
-        deck.add(i, new Integer(i));
+        deck.add(i, Integer.valueOf(i));
       }
       java.util.Collections.shuffle(deck, r0);
     }

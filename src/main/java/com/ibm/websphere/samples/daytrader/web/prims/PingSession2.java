@@ -17,14 +17,15 @@ package com.ibm.websphere.samples.daytrader.web.prims;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serial;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import com.ibm.websphere.samples.daytrader.util.Log;
 
@@ -38,7 +39,8 @@ import com.ibm.websphere.samples.daytrader.util.Log;
 @WebServlet(name = "PingSession2", urlPatterns = { "/servlet/PingSession2" })
 public class PingSession2 extends HttpServlet {
 
-    private static final long serialVersionUID = -273579463475455800L;
+  @Serial
+  private static final long serialVersionUID = -273579463475455800L;
     private static String initTime;
     private static int hitCount;
 
@@ -82,14 +84,14 @@ public class PingSession2 extends HttpServlet {
             Integer ival = (Integer) session.getAttribute("sessiontest.counter");
             // if there is not a counter then create one.
             if (ival == null) {
-                ival = new Integer(1);
+                ival = Integer.valueOf(1);
             } else {
-                ival = new Integer(ival.intValue() + 1);
+                ival = Integer.valueOf(ival.intValue() + 1);
             }
             session.setAttribute("sessiontest.counter", ival);
             // if the session count is equal to five invalidate the session
             if (ival.intValue() == 5) {
-                session.invalidate();
+              request.logout();
             }
 
             try {

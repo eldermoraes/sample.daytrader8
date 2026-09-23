@@ -15,11 +15,11 @@
  */
 package com.ibm.websphere.samples.daytrader.web.jsf;
 
-import javax.enterprise.context.RequestScoped;
-import javax.faces.context.ExternalContext;
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.servlet.http.HttpSession;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.context.ExternalContext;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.servlet.http.HttpSession;
 
 import com.ibm.websphere.samples.daytrader.beans.RunStatsDataBean;
 import com.ibm.websphere.samples.daytrader.impl.direct.TradeDirectDBUtils;
@@ -116,7 +116,7 @@ public class TradeConfigJSF {
     TradeConfig.setDisplayOrderAlerts(displayOrderAlerts);
     currentConfigStr += "\t\tDisplay Order Alerts:\t\t" + TradeConfig.getDisplayOrderAlerts() + "\n";
 
-    System.out.println(currentConfigStr);
+    IO.println(currentConfigStr);
     setResult("DayTrader Configuration Updated");
   }
 

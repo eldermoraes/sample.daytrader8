@@ -16,15 +16,16 @@
 package com.ibm.websphere.samples.daytrader.web.prims;
 
 import java.io.IOException;
+import java.io.Serial;
 
-import javax.inject.Inject;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.inject.Inject;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import com.ibm.websphere.samples.daytrader.entities.QuoteDataBean;
 import com.ibm.websphere.samples.daytrader.impl.direct.TradeDirect;
@@ -50,8 +51,9 @@ public class PingJDBCRead2JSP extends HttpServlet {
   @Inject
   @TradeJDBC
   TradeServices trade;
-  
-    private static final long serialVersionUID = 1118803761565654806L;
+
+  @Serial
+  private static final long serialVersionUID = 1118803761565654806L;
 
     /**
      * forwards post requests to the doGet method Creation date: (11/6/2000

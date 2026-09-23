@@ -17,14 +17,15 @@ package com.ibm.websphere.samples.daytrader.web.prims;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serial;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import com.ibm.websphere.samples.daytrader.util.Log;
 
@@ -39,7 +40,8 @@ import com.ibm.websphere.samples.daytrader.util.Log;
  */
 @WebServlet(name = "PingSession3", urlPatterns = { "/servlet/PingSession3" })
 public class PingSession3 extends HttpServlet {
-    private static final long serialVersionUID = -6129599971684210414L;
+  @Serial
+  private static final long serialVersionUID = -6129599971684210414L;
     private static int NUM_OBJECTS = 2;
     private static String initTime = null;
     private static int hitCount = 0;
@@ -115,7 +117,7 @@ public class PingSession3 extends HttpServlet {
 
                 outputBuffer.append("<html><head> Session object size set to " + NUM_OBJECTS + "K bytes </head><body></body></html>");
                 if (session != null) {
-                    session.invalidate();
+                  request.logout();
                 }
                 out.print(outputBuffer.toString());
                 out.close();

@@ -15,12 +15,13 @@
  */
 package com.ibm.websphere.samples.daytrader.web.jsf;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Named;
 
 import com.ibm.websphere.samples.daytrader.util.FinancialUtils;
 
@@ -28,7 +29,8 @@ import com.ibm.websphere.samples.daytrader.util.FinancialUtils;
 @RequestScoped
 public class HoldingData implements Serializable {
 
-    private static final long serialVersionUID = -4760036695773749721L;
+  @Serial
+  private static final long serialVersionUID = -4760036695773749721L;
 
     private Integer holdingID;
     private double quantity;

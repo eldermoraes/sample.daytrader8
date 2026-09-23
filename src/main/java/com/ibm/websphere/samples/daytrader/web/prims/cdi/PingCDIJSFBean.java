@@ -15,15 +15,17 @@
  */
 package com.ibm.websphere.samples.daytrader.web.prims.cdi;
 
+import java.io.Serial;
 import java.io.Serializable;
 
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
+import jakarta.enterprise.context.SessionScoped;
+import jakarta.inject.Named;
 
 @Named
 @SessionScoped
 public class PingCDIJSFBean implements Serializable {
 
+  @Serial
   private static final long serialVersionUID = -7475815494313679416L;
   private int hitCount = 0;
 

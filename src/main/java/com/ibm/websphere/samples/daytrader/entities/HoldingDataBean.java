@@ -15,26 +15,27 @@
  */
 package com.ibm.websphere.samples.daytrader.entities;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.TableGenerator;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Transient;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PastOrPresent;
-import javax.validation.constraints.Positive;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.TableGenerator;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.persistence.Transient;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Positive;
 
 import com.ibm.websphere.samples.daytrader.util.Log;
 import com.ibm.websphere.samples.daytrader.util.TradeConfig;
@@ -43,9 +44,10 @@ import com.ibm.websphere.samples.daytrader.util.TradeConfig;
 @Table(name = "holdingejb")
 public class HoldingDataBean implements Serializable {
 
-    /* persistent/relationship fields */
+  /* persistent/relationship fields */
 
-    private static final long serialVersionUID = -2338411656251935480L;
+  @Serial
+  private static final long serialVersionUID = -2338411656251935480L;
 
     @Id
     @TableGenerator(name = "holdingIdGen", table = "KEYGENEJB", pkColumnName = "KEYNAME", valueColumnName = "KEYVAL", pkColumnValue = "holding", allocationSize = 1000)
@@ -98,7 +100,7 @@ public class HoldingDataBean implements Serializable {
     }
 
     public static HoldingDataBean getRandomInstance() {
-        return new HoldingDataBean(new Integer(TradeConfig.rndInt(100000)), // holdingID
+        return new HoldingDataBean(Integer.valueOf(TradeConfig.rndInt(100000)), // holdingID
                 TradeConfig.rndQuantity(), // quantity
                 TradeConfig.rndBigDecimal(1000.0f), // purchasePrice
                 new java.util.Date(TradeConfig.rndInt(Integer.MAX_VALUE)), // purchaseDate

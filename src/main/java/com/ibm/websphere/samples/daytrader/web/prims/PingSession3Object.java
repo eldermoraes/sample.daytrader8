@@ -15,6 +15,7 @@
  */
 package com.ibm.websphere.samples.daytrader.web.prims;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -24,13 +25,14 @@ import java.io.Serializable;
  *
  */
 public class PingSession3Object implements Serializable {
-    // PingSession3Object represents a BLOB of session data of various.
-    // Each instantiation of this class is approximately 1K in size (not
-    // including overhead for arrays and Strings)
-    // Using different datatype exercises the various serialization algorithms
-    // for each type
+  // PingSession3Object represents a BLOB of session data of various.
+  // Each instantiation of this class is approximately 1K in size (not
+  // including overhead for arrays and Strings)
+  // Using different datatype exercises the various serialization algorithms
+  // for each type
 
-    private static final long serialVersionUID = 1452347702903504717L;
+  @Serial
+  private static final long serialVersionUID = 1452347702903504717L;
     byte[] byteVal = new byte[16]; // 8 * 16 = 128 bits
     char[] charVal = new char[8]; // 16 * 8 = 128 bits
     int a, b, c, d; // 4 * 32 = 128 bits

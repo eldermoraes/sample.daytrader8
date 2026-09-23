@@ -28,9 +28,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import javax.annotation.Resource;
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import jakarta.annotation.Resource;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import javax.sql.DataSource;
 
 import com.ibm.websphere.samples.daytrader.beans.RunStatsDataBean;
@@ -419,7 +419,7 @@ public class TradeDirectDBUtils implements TradeDB {
 
       conn.commit();
 
-      System.out.println("TradeDirect:reset Run stats data\n\n" + runStatsData);
+      IO.println("TradeDirect:reset Run stats data\n\n" + runStatsData);
     } catch (Exception e) {
       Log.error(e, "Failed to reset Trade");
       conn.rollback();

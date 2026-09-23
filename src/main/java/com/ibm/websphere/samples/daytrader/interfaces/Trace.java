@@ -15,7 +15,7 @@
  */
 package com.ibm.websphere.samples.daytrader.interfaces;
 
-import javax.interceptor.InterceptorBinding;
+import jakarta.interceptor.InterceptorBinding;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 

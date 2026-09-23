@@ -16,15 +16,17 @@
 package com.ibm.websphere.samples.daytrader.web.prims.ejb3;
 
 import java.io.IOException;
+import java.io.Serial;
+import java.util.concurrent.ThreadLocalRandom;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Inject;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import com.ibm.websphere.samples.daytrader.impl.ejb3.TradeSLSBBean;
 import com.ibm.websphere.samples.daytrader.interfaces.TradeEJB;
@@ -45,7 +47,8 @@ import com.ibm.websphere.samples.daytrader.util.TradeConfig;
 @WebServlet(name = "ejb3.PingServlet2Session", urlPatterns = { "/ejb3/PingServlet2Session" })
 public class PingServlet2Session extends HttpServlet {
 
-    private static final long serialVersionUID = 6854998080392777053L;
+  @Serial
+  private static final long serialVersionUID = 6854998080392777053L;
 
     private static String initTime;
 
@@ -76,8 +79,8 @@ public class PingServlet2Session extends HttpServlet {
 
             try {
                 // create three random numbers
-                double rnd1 = Math.random() * 1000000;
-                double rnd2 = Math.random() * 1000000;
+                double rnd1 = ThreadLocalRandom.current().nextDouble() * 1000000;
+                double rnd2 = ThreadLocalRandom.current().nextDouble() * 1000000;
 
                 // use a function to do some work.
                 double increase = 0.0;

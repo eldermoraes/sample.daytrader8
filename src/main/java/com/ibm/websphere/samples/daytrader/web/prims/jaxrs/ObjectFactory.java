@@ -15,7 +15,7 @@
  */
 package com.ibm.websphere.samples.daytrader.web.prims.jaxrs;
 
-import javax.xml.bind.annotation.XmlRegistry;
+import jakarta.xml.bind.annotation.XmlRegistry;
 
 
 @XmlRegistry
