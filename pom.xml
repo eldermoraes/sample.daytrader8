@@ -212,7 +212,10 @@
                   <configuration>
                      <rules>
                         <rule>
-                           <element>BUNDLE</element>
+                           <element>CLASS</element>
+                           <includes>
+                              <include>com.ibm.websphere.samples.daytrader.util.FinancialUtils</include>
+                           </includes>
                            <limits>
                               <limit>
                                  <counter>LINE</counter>

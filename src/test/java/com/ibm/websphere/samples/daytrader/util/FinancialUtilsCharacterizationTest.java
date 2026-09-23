@@ -252,4 +252,57 @@ class FinancialUtilsCharacterizationTest {
                     "expected ArithmeticException for purchasePrice that produces non-scale-2 sum");
         }
     }
+
+    // ------------------------------------------------------------------ //
+    //  HTML and Link formatting methods                                  //
+    // ------------------------------------------------------------------ //
+
+    @Nested
+    @DisplayName("HTML and link formatting")
+    class FormattingTests {
+
+        @Test
+        @DisplayName("printGainHTML with positive and negative gain")
+        void testPrintGainHTML() {
+            String positive = FinancialUtils.printGainHTML(new BigDecimal("10.50"));
+            assertEquals("<FONT color=\"#009900\">10.50</FONT><IMG src=\"images/arrowup.gif\" width=\"10\" height=\"10\" border=\"0\"></IMG>", positive);
+
+            String negative = FinancialUtils.printGainHTML(new BigDecimal("-10.50"));
+            assertEquals("<FONT color=\"#ff0000\">-10.50</FONT><IMG src=\"images/arrowdown.gif\" width=\"10\" height=\"10\" border=\"0\"></IMG>", negative);
+        }
+
+        @Test
+        @DisplayName("printChangeHTML with positive and negative change")
+        void testPrintChangeHTML() {
+            String positive = FinancialUtils.printChangeHTML(5.25);
+            assertEquals("<FONT color=\"#009900\">5.25</FONT><IMG src=\"images/arrowup.gif\" width=\"10\" height=\"10\" border=\"0\"></IMG>", positive);
+
+            String negative = FinancialUtils.printChangeHTML(-5.25);
+            assertEquals("<FONT color=\"#ff0000\">-5.25</FONT><IMG src=\"images/arrowdown.gif\" width=\"10\" height=\"10\" border=\"0\"></IMG>", negative);
+        }
+
+        @Test
+        @DisplayName("printGainPercentHTML with positive and negative gain")
+        void testPrintGainPercentHTML() {
+            String positive = FinancialUtils.printGainPercentHTML(new BigDecimal("12.34"));
+            assertEquals("(<B><FONT color=\"#009900\">+12.34%</FONT></B>)<IMG src=\"images/arrowup.gif\" width=\"10\" height=\"10\" border=\"0\"></IMG>", positive);
+
+            String negative = FinancialUtils.printGainPercentHTML(new BigDecimal("-12.34"));
+            assertEquals("(<B><FONT color=\"#ff0000\">-12.34%</FONT></B>)<IMG src=\"images/arrowdown.gif\" width=\"10\" height=\"10\" border=\"0\"></IMG>", negative);
+        }
+
+        @Test
+        @DisplayName("printQuoteLink returns correct anchor tag")
+        void testPrintQuoteLink() {
+            String link = FinancialUtils.printQuoteLink("IBM");
+            assertEquals("<A href=\"app?action=quotes&symbols=IBM\">IBM</A>", link);
+        }
+
+        @Test
+        @DisplayName("constructor invocation for full coverage")
+        void testConstructor() {
+            FinancialUtils utils = new FinancialUtils();
+            org.junit.jupiter.api.Assertions.assertNotNull(utils);
+        }
+    }
 }
